@@ -56,6 +56,5 @@ namespace projectAPI.BL
         {
             return await applicationdbcontext.genres.AnyAsync(g => g.Id == id);    
         }
-
     }
 }

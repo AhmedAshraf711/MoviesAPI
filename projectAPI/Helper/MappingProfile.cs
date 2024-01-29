@@ -9,7 +9,6 @@ namespace projectAPI.Helper
             CreateMap<Movie, MovieDetailesDTO>();
             CreateMap<MovieCreateDTO, Movie>()
                    .ForMember(src => src.Poster, opt => opt.Ignore());
-           
 
         }
     }
