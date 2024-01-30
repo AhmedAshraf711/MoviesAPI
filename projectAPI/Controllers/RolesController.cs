@@ -26,6 +26,7 @@ namespace projectAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddNewRole(RoleDTO rolDto)
         {
             if (ModelState.IsValid)
