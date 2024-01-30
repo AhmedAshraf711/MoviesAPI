@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using projectAPI.BL;
 
@@ -31,6 +32,7 @@ namespace projectAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddGenre(GenreDTO genredto)
         {
             if(ModelState.IsValid)
@@ -44,6 +46,7 @@ namespace projectAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateGenre(int id , GenreDTO genredto)
         {
             var oldgenre = await genre.GetGenreById(id);
@@ -57,6 +60,7 @@ namespace projectAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteGenre(int id)
         {
             var genreFound=await genre.GetGenreById(id);

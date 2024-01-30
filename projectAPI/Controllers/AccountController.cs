@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -33,6 +34,7 @@ namespace projectAPI.Controllers
                IdentityResult result = await userManager.CreateAsync(user, userDTO.Password);
                 if(result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, "User");
                     return Ok("Account Add Success");
                 }
                 return BadRequest(result.Errors.FirstOrDefault());
@@ -40,6 +42,27 @@ namespace projectAPI.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost("adminregister")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminRegistration(RegisterUserDTO userDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = new ApplicationUser();
+                user.UserName = userDTO.UserName;
+                user.Email = userDTO.Email;
+                IdentityResult result = await userManager.CreateAsync(user, userDTO.Password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "Admin");
+                    return Ok("Admin Add Success");
+                }
+                return BadRequest(result.Errors.FirstOrDefault());
+            }
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDTO userdto)
         {
             if (ModelState.IsValid)

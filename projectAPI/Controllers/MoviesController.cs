@@ -9,6 +9,7 @@ namespace projectAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class MoviesController : ControllerBase
     {
         private readonly IMovie movie;
@@ -44,8 +45,9 @@ namespace projectAPI.Controllers
             }
             return BadRequest("Invalid ID!");
         }
-        [Authorize]
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddMovie([FromForm]MovieCreateDTO movieadedd)
         {
           
@@ -68,8 +70,9 @@ namespace projectAPI.Controllers
 
             return Ok(await movie.AddMovie(data));
         }
-        [Authorize]
+
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Updatemovie(int id , [FromForm]MovieUpdateDTO movieupdate)
         {
             var moviefound = await movie.GetMovieById(id);
@@ -106,17 +109,16 @@ namespace projectAPI.Controllers
             return Ok(movie.UpdateMovie(moviefound));
 
         }
-        [Authorize]
+     
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
              var moviefound=await movie.GetMovieById(id);
             if (moviefound == null)
                 return BadRequest("Inavlid id!");
 
-            return Ok(movie.delete(moviefound));  
-             
-             
+            return Ok(movie.delete(moviefound));   
         }
     }
 }
