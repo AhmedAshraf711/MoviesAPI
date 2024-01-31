@@ -9,7 +9,7 @@ namespace projectAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class MoviesController : ControllerBase
     {
         private readonly IMovie movie;

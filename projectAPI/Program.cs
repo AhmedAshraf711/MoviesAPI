@@ -5,6 +5,7 @@ using projectAPI.BL;
 using projectAPI.Model;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 namespace projectAPI
 {
@@ -23,7 +24,14 @@ namespace projectAPI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(option =>
+            {
+                option.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "MoviesApi",
+                });
+            });
             builder.Services.AddCors();
             builder.Services.AddScoped<IGenre,GenreRepo>();
             builder.Services.AddScoped<IMovie,MovieRepo>();
