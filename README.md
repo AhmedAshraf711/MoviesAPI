@@ -42,7 +42,7 @@ Applay **Identity :**
 - LINQ
 
  ## How it Work 
- - clone this repo : https://github.com/AhmedAshraf711/Movies.git
+ - clone this repo : https://github.com/AhmedAshraf711/MoviesAPI.git
 
 
 > [!IMPORTANT]
