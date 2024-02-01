@@ -1,4 +1,4 @@
-# Movies Project
+# Movies API
 ## Table Of Content
 * [project notes](https://github.com/AhmedAshraf711/Movies/blob/master/README.md#project-notes)
 *  [Tools](https://github.com/AhmedAshraf711/Movies#tools)
@@ -13,6 +13,7 @@ this operation is :
 - Delete
 - Detailes
 
+, two Controllers **Roles** for manage roles in API and **Account** for manage registration and login  
 And used some concepts to build this project by clear way such as DependancyInjection and Automapper and Data Transfer Object (DTO)
 
 **Created By RESTAPI**
@@ -24,10 +25,16 @@ And used some concepts to build this project by clear way such as DependancyInje
  - **Edit**   : responsible for updating movies on project .
  
  - **Delete** : responsible for Delete movies from project.
+
+**only Admins can apply them** ,  also page of  **Detailes**  this page  responsible for **showing**  movies on the site and genres , admins can display it also.
+
+ Users can display page of **Detailes** Only.
    
 Applay **Identity :**
 - Project also contains a **Register** and **Login**.
-- Applay **Authentication AND Authorization** by **JWT** to ensure that any user want to access to endpoiints have a **token**.
+- Add two roles **Admin** , **User**.
+- Applay **Authentication** by **JWT** to ensure that any user want to access to endpoiints have a **token**.
+- Applay **Authorization** to ensure that user have a **Authoriz** to access to a number of endpoints or all endpoints ,role of each user determines this thing.
 
 ## Tools
 - ASP.NET 5 MVC
