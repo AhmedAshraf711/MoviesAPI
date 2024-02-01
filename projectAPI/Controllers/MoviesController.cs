@@ -50,31 +50,39 @@ namespace projectAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddMovie([FromForm]MovieCreateDTO movieadedd)
         {
-          
-            if (!allowextintion.Contains(Path.GetExtension(movieadedd.Poster.FileName).ToLower()))
-                return BadRequest("only .png and .jpg are allowed");
+            if (User.IsInRole("Admin"))
+            {
 
-            if (movieadedd.Poster.Length > maxAllowPosterSize)
-                return BadRequest("max allow size for poster is 1MB");
 
-            var validGenre = await genre.IsValidGenre(movieadedd.GenreId);
-            if (!validGenre)
-                return BadRequest("Invalid Genre Id!");
-            
+                if (!allowextintion.Contains(Path.GetExtension(movieadedd.Poster.FileName).ToLower()))
+                    return BadRequest("only .png and .jpg are allowed");
 
-            using var datastream = new MemoryStream();
-            movieadedd.Poster.CopyTo(datastream);
+                if (movieadedd.Poster.Length > maxAllowPosterSize)
+                    return BadRequest("max allow size for poster is 1MB");
 
-            var data = mapper.Map<Movie>(movieadedd);
-            data.Poster=datastream.ToArray();
+                var validGenre = await genre.IsValidGenre(movieadedd.GenreId);
+                if (!validGenre)
+                    return BadRequest("Invalid Genre Id!");
 
-            return Ok(await movie.AddMovie(data));
+
+                using var datastream = new MemoryStream();
+                movieadedd.Poster.CopyTo(datastream);
+
+                var data = mapper.Map<Movie>(movieadedd);
+                data.Poster = datastream.ToArray();
+
+                return Ok(await movie.AddMovie(data));
+            }
+            return Unauthorized();
         }
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Updatemovie(int id , [FromForm]MovieUpdateDTO movieupdate)
         {
+            if (User.IsInRole("Admin")) 
+            { 
+            
             var moviefound = await movie.GetMovieById(id);
 
             if (moviefound == null)
@@ -107,6 +115,8 @@ namespace projectAPI.Controllers
             moviefound.GenreId = movieupdate.GenreId;
 
             return Ok(movie.UpdateMovie(moviefound));
+            }
+            return Unauthorized();
 
         }
      
@@ -114,11 +124,15 @@ namespace projectAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (User.IsInRole("Admin"))
+            {     
              var moviefound=await movie.GetMovieById(id);
             if (moviefound == null)
                 return BadRequest("Inavlid id!");
 
-            return Ok(movie.delete(moviefound));   
+            return Ok(movie.delete(moviefound));
+            }
+            return Unauthorized();
         }
     }
 }

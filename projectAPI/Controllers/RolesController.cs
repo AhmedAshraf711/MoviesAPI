@@ -25,10 +25,12 @@ namespace projectAPI.Controllers
            return Ok(await applicationDbContext.Roles.ToListAsync());
         }
 
-        [HttpPost]
+        [HttpPost("AddNewRole")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddNewRole(RoleDTO rolDto)
         {
+            if (User.IsInRole("Admin"))
+            {
             if (ModelState.IsValid)
             {
                 IdentityRole roleModel = new IdentityRole();
@@ -48,6 +50,8 @@ namespace projectAPI.Controllers
                 }
             }
             return BadRequest();
+            }
+            return Unauthorized();
         }
     }
 }

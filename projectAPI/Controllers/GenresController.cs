@@ -36,6 +36,8 @@ namespace projectAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddGenre(GenreDTO genredto)
         {
+            if (User.IsInRole("Admin"))
+            {
             if(ModelState.IsValid)
             {
                Genre newgenre = new Genre() { Name = genredto.Name };
@@ -44,12 +46,16 @@ namespace projectAPI.Controllers
                return Created(url, newgenre);
             }
              return BadRequest();
+            }
+            return Unauthorized();
         }
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateGenre(int id , GenreDTO genredto)
         {
+            if (User.IsInRole("Admin"))
+            {
             var oldgenre = await genre.GetGenreById(id);
             if (oldgenre != null)
             {
@@ -58,17 +64,23 @@ namespace projectAPI.Controllers
                  return Ok(oldgenre);
             }
             return BadRequest();
+            }
+            return Unauthorized();
         }
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteGenre(int id)
         {
-            var genreFound=await genre.GetGenreById(id);
-            if(genreFound == null)
-                return BadRequest("Invalid Id!");
-            genre.DeleteGenre(genreFound);
-            return Ok(genreFound); 
+            if (User.IsInRole("Admin"))
+            {
+                var genreFound = await genre.GetGenreById(id);
+                if (genreFound == null)
+                    return BadRequest("Invalid Id!");
+                genre.DeleteGenre(genreFound);
+                return Ok(genreFound);
+            }
+            return Unauthorized();
         }
          
     }
