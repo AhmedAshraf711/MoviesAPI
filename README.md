@@ -26,7 +26,7 @@ And used some concepts to build this project by clear way such as **DependancyIn
  
  - **Delete** : responsible for Delete movies from project.
 
-**only Admins can apply them** ,  also endpoint of  **Detailes**  this endpoint  responsible for **showing**  movies in movies controller  and **showing** genres in genres controller, admins can execute it also.
+**only Admins can apply them** ,  also endpoint of  **Detailes**  this endpoint  responsible for **showing**  movies in movies controller  and **showing** genres in genres controller, admins and users can execute it.
 
  Users can display page of **Detailes** Only.
    
