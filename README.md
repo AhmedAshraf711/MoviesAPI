@@ -14,7 +14,7 @@ this operation is :
 - Detailes
 
 , two Controllers **Roles** for manage roles in API and **Account** for manage registration and login  
-And used some concepts to build this project by clear way such as DependancyInjection and Automapper and Data Transfer Object (DTO)
+And used some concepts to build this project by clear way such as **DependancyInjection** and **Automapper** and **Data Transfer Object (DTO)**
 
 **Created By RESTAPI**
 
@@ -37,29 +37,22 @@ Applay **Identity :**
 - Applay **Authorization** to ensure that user have a **Authoriz** to access to a number of endpoints or all endpoints ,role of each user determines this thing.
 
 ## Tools
-- ASP.NET 5 MVC
+- ASP.NET6
 - EntityFrameWorkCore
 - LINQ
-- HTML
-- CSS
-- JavaScript
-- BootStrap
-- JQuery
-- Ajax
 
-  
  ## How it Work 
  - clone this repo : https://github.com/AhmedAshraf711/Movies.git
 
 
 > [!IMPORTANT]
 >  ### Installation
->  - Microsoft.EntityFrameworkCore 5.0.4
->  - Microsoft.EntityFrameworkCore 5.0.4
->  - Microsoft.EntityFrameworkCore.SqlServer 5.0.4
->  - Microsoft.EntityFrameworkCore.Tools 5.0.4
->  - Microsoft.VisualStudio.Web.CodeGeneration.Design 5.0.4
->  - Microsoft.AspNetCore.Identity.EntityFrameworkCore 5.0.4
->  - NToastNotify 7.0.0
+>  - Microsoft.EntityFrameworkCore 6.0.26
+>  - Microsoft.EntityFrameworkCore.SqlServer 6.0.26
+>  - Microsoft.EntityFrameworkCore.Tools 6.0.26
+>  - Microsoft.AspNetCore.Identity.EntityFrameworkCore 6.0.26
+>  - Microsoft.AspNetCore.Authentication.JwtBearer 6.0.26
+>  - Swashbuckle.AspNetCore 6.5.0
+>  - AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1
 
 
