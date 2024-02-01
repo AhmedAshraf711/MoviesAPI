@@ -1,7 +1,7 @@
 # Movies API
 ## Table Of Content
 * [project notes](https://github.com/AhmedAshraf711/Movies/blob/master/README.md#project-notes)
-*  [Tools](https://github.com/AhmedAshraf711/Movies#tools)
+*  [Tools](https://github.com/AhmedAshraf711/MoviesAPI/blob/master/README.md#tools)
 * [How it Work](https://github.com/AhmedAshraf711/Movies/blob/master/README.md#how-it-work)
 
 
